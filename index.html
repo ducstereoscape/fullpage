@@ -1,417 +1,284 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Apple demo</title>
-<!-- Bootstrap -->
-<link href="css/bootstrap.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>fullPage.js One Page Scroll Sites</title>
+<meta name="author" content="Alvaro Trigo Lopez" />
+<meta name="description" content="fullPage plugin by Alvaro Trigo. Create fullscreen pages fast and simple. One page scroll like iPhone website." />
+<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple" />
+<meta name="Resource-type" content="Document" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
 <link rel="stylesheet" type="text/css" href="css/examples.css" />
-	<style>
+<link rel="stylesheet" type="text/css" href="css/animate.css" />
+<style>
+body, h1, h2, h3, h4, h5, h6, p {
+	color: #FFFFFF;
+}
+h2 {
+	font-size: 50px;
+}
+h3 {
+	font-size: 36px;
+}
+/* Sections
+* --------------------------------------- */
+#section0 img, #section1 img {
+	margin: 20px 0 0 0;
+}
+#section2 img {
+	margin: 20px 0 0 52px;
+}
+#section3 img {
+	bottom: 0px;
+	position: absolute;
+	margin-left: -420px;
+}
+.intro p {
+	width: 50%;
+	margin: 0 auto;
+	font-size: 1.5em;
+}
+.twitter-share-button {
+	position: absolute;
+	z-index: 99;
+	right: 149px;
+	top: 9px;
+}
+</style>
+<!--[if IE]>
+<script type="text/javascript">
+var console = { log: function() {} };
+</script>
+<![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/scrolloverflow.js"></script>
+<script type="text/javascript" src="js/jquery.fullPage.js"></script>
+<script type="text/javascript" src="js/examples.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+<script src="js/scrollmagic/uncompressed/ScrollMagic.js"></script>
+<script src="js/scrollmagic/uncompressed/plugins/debug.addIndicators.js"></script>
+<script src="js/scrollmagic/uncompressed/plugins/animation.gsap.js"></script>
+<script src="js/scrollmagic/uncompressed/plugins/animation.velocity.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+$('#fullpage').fullpage({
+//Navigation
+menu: '#menu',
+lockAnchors: false, 
+anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage'],
+navigation: true, 
+navigationPosition: 'right', 
+//				navigationTooltips: ['firstSlide', 'secondSlide'], 
+showActiveTooltip: false, 
+slidesNavigation: true, 
+slidesNavPosition: 'bottom', 
 
+//				//Scrolling
+css3: true, 
+scrollingSpeed: 500, 
+autoScrolling: true, 
+fitToSection: true, 
+fitToSectionDelay: 1000, 
+scrollBar: false, 
+easing: 'easeInOutCubic', 
+//				easingcss3: 'ease', 
+loopBottom: true, 
+loopTop: true, 
+loopHorizontal: true, 
+//				continuousVertical: false, 
+//				continuousHorizontal: false, 
+//				scrollHorizontally: false, 
+//				interlockedSlides: false, 
+//				resetSliders: false, 
+//				fadingEffect: false, 
+//				normalScrollElements: '#element1, .element2', 
+scrollOverflow: true, 
+scrollOverflowOptions: null,
+touchSensitivity: 5,
+normalScrollElementTouchThreshold: 5, 
+bigSectionsDestination: null,
 
-	body{
-		color: #333;
-		font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-	}
+//				//Accessibility
+keyboardScrolling: true, 
+animateAnchor: true, 
+recordHistory: true, 
 
+//				//Design
+controlArrows: true, 
+verticalCentered: true, 
+sectionsColor: ['#FFFFFF', '#081e30', '#ee005a', '#081e30', '#ee005a'], 
+paddingTop: 0,
+paddingBottom: 0,
+//				fixedElements: '#header, .footer', 
+responsiveWidth: 0, 
+responsiveHeight: 0, 
+//				responsiveSlides: false, 
+//		
+//				//Custom selectors
+sectionSelector: '.section',
+slideSelector: '.slide', 
+//		
+//				//events
+//				onLeave: function(index, nextIndex, direction){},
+//				afterLoad: function(anchorLink, index){}, 
+//				afterRender: function(){},
+//				afterResize: function(){},
+//				afterResponsive: function(isResponsive){},
+//				afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
+//				onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){},
 
-	/* Style for our header texts
-	* --------------------------------------- */
-	h1{
-		font-size: 5em;
-		font-family: arial,helvetica;
-		margin:0;
-		padding:0;
-	}
-	h2{
-		font-size: 2em;
-		margin: 0 0 18px 0;
-		font-family: arial,helvetica;
-	}
-
-
-
-
-	/* Common styles
-	* --------------------------------------- */
-	img{
-	    -webkit-transition: all 0.7s ease-out;
-		-moz-transition: all 0.7s ease-out;
-		-o-transition: all 0.7s ease-out;
-		transition: all 0.7s ease-out;
-	}
-	.section{
-		text-align:center;
-		overflow:hidden;
-	}
-	.wrap{
-		width: 1180px;
-		height: 100%;
-		margin-left: auto;
-		margin-right: auto;
-		position: relative;
-	}
-	.box{
-		text-align: left;
-		color: #808080;
-		font-size: 1.2em;
-		line-height: 1.6em;
-	}
-
-
-
-
-	/* Section 0
-	* --------------------------------------- */
-	#section0{
-		padding: 60px 0;
-	}
-	#section0 img{
-		height: 100%;
-		margin: 40px 0 0 0;
-	}
-
-
-
-
-	/* Section 1
-	* --------------------------------------- */
-	#section1 img{
-		position:absolute;
-		left: 40px;
-		top: 100px;
-	}
-
-	#section1 .box{
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-top: -192px;
-		margin-left: 89px;
-		width: 395px;
-		z-index: 1;
-	}
-	#section1 .imgsContainer{
-		display: block;
-		position: absolute;
-		z-index: 1;
-		top: 42%;
-		left: 58%;
-		margin-top: -325px;
-		margin-left: -747px;
-		width: 800px;
-		height: 696px;
-	}
-	#section1 img{
-		height: 100%;
-	}
-	/*screen resolutions between 620px and 800px*/
-	@media all and (min-width: 620px) and (max-width: 800px){
-		#section1 .imgsContainer{
-			margin-top: -278px;
-			margin-left: -685px;
-			width: 647px;
-			height: 563px;
-		}
-	}
-
-	/*screen resolutions lower than 620px*/
-	@media all and (max-width: 620px){
-		#section1 .imgsContainer{
-			margin-top: -208px;
-			margin-left: -516px;
-			width: 534px;
-			height: 464px;
-		}
-	}
-	#iphone2{
-		z-index: 10;
-	}
-	#iphone2.active{
-		-webkit-transform: translate3d(-134px, 0px, 0px);
-		-moz-transform: translate3d(-134px, 0px, 0px);
-		-ms-transform:translate3d(-134px, 0px, 0px);
-		transform: translate3d(-134px, 0px, 0px);
-	}
-
-	#iphone3{
-		z-index: 12;
-	}
-	#iphone3.active{
-		-webkit-transform: translate3d(213px, 0px, 0px);
-		-moz-transform: translate3d(213px, 0px, 0px);
-		-ms-transform:translate3d(213px, 0px, 0px);
-		transform: translate3d(213px, 0px, 0px);
-	}
-
-	#iphone4{
-		z-index: 11;
-		left: 140px;
-	}
-
-	#iphone4.active{
-		-webkit-transform: translate3d(548px, 0px, 0px);
-		-moz-transform: translate3d(548px, 0px, 0px);
-		-ms-transform:translate3d(548px, 0px, 0px);
-		transform: translate3d(548px, 0px, 0px);
-	}
-
-
-
-
-	/* Section 2
-	* --------------------------------------- */
-	#section2 img{
-		position:absolute;
-	}
-	#section2 .imgsContainer,
-	#staticImg .imgsContainer,
-	#section3 .imgsContainer{
-		position: absolute;
-		z-index: 1;
-		left: 50%;
-		display: block;
-		margin-top: -288px;
-		margin-left: -636px;
-		width: 0;
-		height: 0;
-
-		-webkit-transition: all 1.2s ease-in-out;
-		-moz-transition: all 1.2s ease-in-out;
-		-o-transition: all 1.2s ease-in-out;
-		transition: all 1.2s ease-in-out;
-	}
-
-	#section2.moveUp .imgsContainer{
-		top: 50%;
-	}
-
-	#section2.moveDown .imgsContainer,
-	#staticImg .imgsContainer{
-		top: 90%;
-	}
-
-	#section2.active .imgsContainer{
-		top: 50%;
-	}
-
-	#section2 .box{
-		top: 22%;
-		left: 42%;
-		position: absolute;
-		width: 582px;
-	}
-
-	#iphone-yellow{
-		top: -35px;
-		left: -222px;
-	}
-
-	#iphone-red{
-		top: -194px;
-		left: 106px;
-	}
-
-	#iphone-blue{
-		top: 320px;
-		left: 448px;
-	}
-
-	#iphone-green{
-		left: 106px;
-		position:absolute;
-	}
-
-	#staticImg{
-		display: block;
-		position: absolute;
-		z-index: 1;
-		top: 200%;
-		left: 0;
-		width: 100%;
-		min-width: 980px;
-		height: 100%;
-
-		-webkit-transition: all 0.7s ease-out;
-		-moz-transition: all 0.7s ease-out;
-		-o-transition: all 0.7s ease-out;
-		transition: all 0.7s ease-out;
-
-		-webkit-backface-visibility: hidden;
-		-webkit-perspective: 1000;
-	}
-	#staticImg.moveDown{
-	-webkit-transform: translate3d(0, 100%, 0);
-      -ms-transform: translate3d(0, 100%, 0);
-          transform: translate3d(0, 100%, 0);
-	}
-	#staticImg.moveUp{
-
-	-webkit-transform: translate3d(0, 0, 0);
-      -ms-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-	}
-	#staticImg.moveDown .imgsContainer{
-			top: 50%;
-	}
-	#staticImg.moveDown img{
-		top: 155px;
-	}
-
-	#staticImg.active .imgsContainer{
-		top: 50%;
-	}
-
-
-	#staticImg.active img{
-		top: 487px;
-	}
-
-
-
-
-
-	/* Section 3
-	* --------------------------------------- */
-	#section3 .imgsContainer{
-		top: 50%;
-	}
-
-	#section3 img{
-		top: 155px;
-		left: 455px;
-		position: absolute;
-	}
-	#section3 .box{
-		text-align: center;
-		margin: 10% 0 0 0;
-	}
-
-
-
-	/* Overwriting fullPage.js tooltip color
-	* --------------------------------------- */
-	.fp-tooltip{
-		color: #AAA;
-	}
-	#fp-nav span, .fp-slidesNav span{
-		border-color: #AAA;
-	}
-	#fp-nav li .active span, .fp-slidesNav .active span{
-		background: #AAA;
-	}
-
-	</style>
-
+lazyLoading: true
+});
+});
+</script>
 </head>
 <body>
+<ul id="menu">
+  <li data-menuanchor="firstPage"><a href="#firstPage">First</a></li>
+  <li data-menuanchor="secondPage"><a href="#secondPage">Second</a></li>
+  <li data-menuanchor="thirdPage"><a href="#thirdPage">Third</a></li>
+  <li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth</a></li>
+  <li data-menuanchor="fifthPage"><a href="#fifthPage">Fifth</a></li>
+</ul>
 <div id="fullpage">
-	<div id="staticImg">
-		<div class="imgsContainer">
-			<img src="imgs/iphone-green.png" alt="iphone" id="iphone-green" />
-		</div>
-	</div>
+  <div class="section active" id="section0"> <img class="animated ìnfinite zoomIn" src="imgs/STS_logo_medium.png" alt="fullPage" /> </div>
+  <div class="section" id="section1">
+    <div class="slide">
+      <div class="intro">
+        <h2>We combine visual communication and intelligence</h2>
+        <img src="imgs/ring2.png" alt="slider" /> </div>
+    </div>
+    <div class="slide">
+      <div class="intro"> <img src="imgs/1.png" alt="simple" />
+        <h1>Simple</h1>
+        <p>Easy to use. Configurable and customizable.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="intro"> <img src="imgs/2.png" alt="Cool" />
+        <h1>Cool</h1>
+        <p>It just looks cool. Impress everybody with a simple and modern web design!</p>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="intro"> <img src="imgs/3.png" alt="Compatible" />
+        <h1>Compatible</h1>
+        <p>Working in modern and old browsers too! IE 8 users don't have the fault of using that horrible browser! Lets give them a chance to see your site in a proper way!</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="section2">
+    <div class="intro">
+      <h2>TO BUILD SOLUTIONS THAT INCREASE YOUR VALUE</h2>
+      <p>Our solutions bring you real benefits in cost savings, increased sales, increased productivity, and in creating experiences that leave a mark.</p>
+    </div>
+  </div>
+  <div class="section" id="section3">
+    <div class="intro">
+      <h2>Stereoscape sales pipeline, 2016 NOV ></h2>
+    </div>
+    <div class="row intro">
+      <div class="col-sm-6 text-center">
+        <h2>PLANNING</h2>
+        <div class="text-center col-sm-6">
+          <h3>Key account managers</h3>
+          <p>New story that differentiates, with USP and proof of  sales propositions</p>
+          <p>No push sales, but tailored solutions</p>
+          <p>Ipad, interactive displays, visual examples. Sales materials=own products</p>
+        </div>
+        <div class="text-center col-sm-6">
+          <h3>COO, board network</h3>
+          <p>Decision maker contacts, approvals, business analysis support</p>
+          <h3>CTO, Creative strategists</h3>
+          <p>Proof of concept that proofs the sales proposition</p>
+        </div>
+      </div>
+      <div class="text-center col-sm-3">
+        <h2>CONTACTING</h2>
+        <h3>Key account managers</h3>
+        <p>New story that differentiates, with USP and proof of  sales propositions</p>
+        <p>No push sales, but tailored solutions</p>
+        <p>Ipad, interactive displays, visual examples. Sales materials=own products</p>
+      </div>
+      <div class="text-center col-sm-3">
+        <h2>POST</h2>
+        <h3>Key account managers</h3>
+        <p>Feedback, future projects, client colleague contacts (cross sales), competitor analysis</p>
+        <p>Marketing with testimonial, own SoMe channels, sponsored</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="section4">
+    <div style="height: 450px"> </div>
+    <div class="intro">
+      <h2>TO BUILD SOLUTIONS THAT INCREASE YOUR VALUE</h2>
+      
+    </div>
+    <div style="height: 450px"> </div>
+    <div id="container">
+      <div id="block"><p>Our solutions bring you real benefits in cost savings, increased sales, increased productivity, and in creating experiences that leave a mark.</p></div>
+    </div>
+    <div id="trigger1" class=""></div>
+    <div id="animate1" class="">
+      <p>You wouldn't like me, when I'm angry!</p>
+      </div>
+    <div style="height:450px"></div>
+    
+    <div class="row intro">
+      <h2>PLANNING</h2>
+      <h3>Key account managers</h3>
+      <p>New story that differentiates, with USP and proof of  sales propositions</p>
+      <p>No push sales, but tailored solutions</p>
+      <p>Ipad, interactive displays, visual examples. Sales materials=own products</p>
+      <h3>COO, board network</h3>
+      <p>Decision maker contacts, approvals, business analysis support</p>
+      <h3>CTO, Creative strategists</h3>
+      <p>Proof of concept that proofs the sales proposition</p>
+      <h2>CONTACTING</h2>
+      <h3>Key account managers</h3>
+      <p>New story that differentiates, with USP and proof of  sales propositions</p>
+      <p>No push sales, but tailored solutions</p>
+      <p>Ipad, interactive displays, visual examples. Sales materials=own products</p>
+      <h2>POST</h2>
+      <h3>Key account managers</h3>
+      <p>Feedback, future projects, client colleague contacts (cross sales), competitor analysis</p>
+      <p>Marketing with testimonial, own SoMe channels, sponsored</p>
+    </div>
+    <div style="height: 800px"> </div>
+  </div>
+  <script>
+// init controller
+var controller = new ScrollMagic.Controller();
+</script> 
+  <script>
 
-	<div class="section " id="section0">
-		<h1>Apple fullPage.js Demo</h1>
-		<img src="imgs/iphone1.jpg" alt="iphone" />
-	</div>
-	<div class="section" id="section1">
-		<div class="wrap">
-			<div class="imgsContainer">
-				<img src="imgs/iphone2.png" alt="iphone" id="iphone2" />
-				<img src="imgs/iphone3.png" alt="iphone" id="iphone3" />
-				<img src="imgs/iphone4.png" alt="iphone" id="iphone4" />
-			</div>
-
-			<div class="box">
-				<h2>A powerful plugin</h2>
-				 <strong>fullPage.js</strong>  callbacks allow you to create amazing dynamic sites with a bit of imagination. This example tries to reproduce the Apple iPhone-5c website animations as an example of what fullPage.js is capable of.
-			</div>
-		</div>
-	</div>
-
-	<div class="section moveDown" id="section2">
-		<div class="wrap">
-			<div class="imgsContainer">
-				<img src="imgs/iphone-yellow.png" alt="iphone" id="iphone-yellow" />
-				<img src="imgs/iphone-red.png" alt="iphone" id="iphone-red" />
-				<img src="imgs/iphone-blue.png" alt="iphone" id="iphone-blue" />
-			</div>
-
-			<div class="box">
-				<h2>Amazing stuff</h2>
-				Combining <strong>fullPage.js</strong> with your own CSS styles and animations, you will be able to create something remarkable.
-			</div>
-		</div>
-	</div>
-	<div class="section moveDown" id="section3">
-		<div class="wrap">
-			<div class="box">
-				<h2>Just a demo</h2>
-				This is, of course, just a demo. I didn't want to spend much time on it.
-				Don't expect it to work perfectly in all kind of screens.
-				It has been designed to work on 1180px width or over on modern browsers with CSS3.
-			</div>
-		</div>
-		<div class="imgsContainer">
-			<img src="imgs/iphone-two.png" alt="iphone" id="iphone-two" />
-		</div>
-	</div>
+var scene = new ScrollMagic.Scene({
+triggerElement: '#container', // starting scene, when reaching this element
+duration: 200 // pin the element for a total of 400px
+})
+.setPin('#block') // the element we want to pin
+.addIndicators() // add indicators (requires plugin)
+.addTo(controller); // Add Scene to ScrollMagic Controller
+</script> 
+  <script>
+var tween = TweenMax.to('#animate1', 0.5, {
+backgroundColor: 'yellow',
+scale: 2
+//rotation: 360
+});
+// build scene
+var scene = new ScrollMagic.Scene({
+triggerElement: "#trigger1",
+duration: 100 // pin the element for a total of 400px
+})
+.setTween(tween) // trigger a TweenMax.to tween
+//.setPin('#animate1')
+.addIndicators() // add indicators (requires plugin)
+.addTo(controller);
+</script> 
 </div>
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="js/jquery-1.11.3.min.js"></script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-
-
-<!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script src="js/bootstrap.js"></script> 
-
-<!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". --> 
-<script src="js/jquery.easings.min.js"></script> 
-
-<!-- This following line is only necessary in the case of using the plugin option `scrollOverflow:true` --> 
-<script type="text/javascript" src="js/scrolloverflow.min.js"></script> 
-<script type="text/javascript" src="js/jquery.fullPage.js"></script> 
-<script type="text/javascript" src="js/examples.js"></script>
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#fullpage').fullpage({
-				'verticalCentered': false,
-				'css3': true,
-				'sectionsColor': ['#F0F2F4', '#fff', '#fff', '#fff'],
-				'navigation': true,
-				'navigationPosition': 'right',
-				'navigationTooltips': ['fullPage.js', 'Powerful', 'Amazing', 'Simple'],
-
-				'afterLoad': function(anchorLink, index){
-					if(index == 2){
-						$('#iphone3, #iphone2, #iphone4').addClass('active');
-					}
-				},
-
-				'onLeave': function(index, nextIndex, direction){
-					if (index == 3 && direction == 'down'){
-						$('.section').eq(index -1).removeClass('moveDown').addClass('moveUp');
-					}
-					else if(index == 3 && direction == 'up'){
-						$('.section').eq(index -1).removeClass('moveUp').addClass('moveDown');
-					}
-
-					$('#staticImg').toggleClass('active', (index == 2 && direction == 'down' ) || (index == 4 && direction == 'up'));
-					$('#staticImg').toggleClass('moveDown', nextIndex == 4);
-					$('#staticImg').toggleClass('moveUp', index == 4 && direction == 'up');
-				}
-			});
-		});
-	</script>
-
 </body>
 </html>
